@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1= title
+    div.newemployee
+        form( method="post")
+            div
+                div
+                    span.label שם :
+                    input(type="text", name="name", id="editEmployeeName")
+                div
+                    span.label שעת יציאה :
+                    input(type="text", name="left", id="editEmployeeLeftTime")
+                div
+                    span.label שעת חזרה :
+                    input(type="text", name="comeback", id="editEmployeeComeBack")
+                div
+                    span.label לאן :
+                    input(type="text", name="where", id="editEmployeeLeftWhere")
+                div
+                    span.label מצלמה :
+                    input(type="checkbox", name="camera", id="editEmployeeCamera")
+                div
+                    span.label ליזר :
+                    input(type="checkbox", name="laser", id="editEmployeeLaser")
+                div
+                    span.label רכב :
+                    input(type="text", name="car", id="editEmployeeLeftCar")
+                div#editEmployeeSubmit
+                    input(type="submit", value="שמור")
+        a(href="/")!= "Back to Employee List"

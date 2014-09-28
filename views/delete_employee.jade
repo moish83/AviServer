@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1= title
+    div.newemployee
+        form( method="post")
+            div
+                div
+                    span.label שם :
+                    input(type="text", name="name", id="editEmployeeName")
+                div#deleteEmployeeSubmit
+                    input(type="submit", value="Delete")
+            a(href="/")!= "Back to Employee List"

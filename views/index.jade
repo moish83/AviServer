@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1= title
+    #employees
+    table
+        thead
+            tr
+                th רכב
+                th לייזר
+                th מצלמה
+                th לאן נוסע?
+                th שעת חזרה
+                th שעת יציאה
+                th שם
+        tbody
+            - each employee in employees
+                tr  
+                    td= employee.car
+                    td= employee.laser
+                    td= employee.camera
+                    td= employee.where
+                    td= employee.comeback
+                    td= employee.left
+                    td= employee.name
+            a(href="/new")!= "הוסף יציאה"
+        
