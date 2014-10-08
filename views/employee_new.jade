@@ -7,13 +7,15 @@ block content
             div
                 div
                     span.label שם :
-                    input(type="text", name="name", id="editEmployeeName")
+                    select(name="name")
+                        - each name in names
+                            option(value="#{name}") #{name}
                 div
                     span.label שעת יציאה :
-                    input(type="text", name="left", id="editEmployeeLeftTime")
+                    input(type="time", name="left", id="editEmployeeLeftTime")
                 div
                     span.label שעת חזרה :
-                    input(type="text", name="comeback", id="editEmployeeComeBack")
+                    input(type="time", name="comeback", id="editEmployeeComeBack")
                 div
                     span.label לאן :
                     input(type="text", name="where", id="editEmployeeLeftWhere")
@@ -25,7 +27,9 @@ block content
                     input(type="checkbox", name="laser", id="editEmployeeLaser")
                 div
                     span.label רכב :
-                    input(type="text", name="car", id="editEmployeeLeftCar")
+                    select(name="car")
+                        - each car in cars
+                            option(value="#{car}") #{car}
                 div#editEmployeeSubmit
                     input(type="submit", value="שמור")
         a(href="/")!= "Back to Employee List"

@@ -1,27 +1,33 @@
 extends layout
 
 block content
+    a.aw-widget-legal(href='http://www.accuweather.com/he/il/tel-aviv/215854/weather-forecast/215854')
+    #awcc1411990878436.aw-widget-current(data-locationkey='215854', data-unit='c', data-language='he', data-useip='false', data-uid='awcc1411990878436')
+    script(type='text/javascript', src='http://oap.accuweather.com/launch.js')
+    #clock
+        embed(src='http://www.clocktag.com/cs/dt101.swf', width='120', height='160', wmode='transparent', type='application/x-shockwave-flash')
     h1= title
-    #employees
-    table
-        thead
-            tr
-                th רכב
-                th לייזר
-                th מצלמה
-                th לאן נוסע?
-                th שעת חזרה
-                th שעת יציאה
-                th שם
-        tbody
-            - each employee in employees
-                tr  
-                    td= employee.car
-                    td= employee.laser
-                    td= employee.camera
-                    td= employee.where
-                    td= employee.comeback
-                    td= employee.left
-                    td= employee.name
-            a(href="/new")!= "הוסף יציאה"
+    div.employee_table
+        table
+            thead
+                tr
+                    td רכב
+                    td לייזר
+                    td מצלמה
+                    td לאן נוסע?
+                    td שעת חזרה
+                    td שעת יציאה
+                    td שם
+                - each employee in employees
+                    tr  
+                        td= employee.car
+                        td= employee.laser
+                        td= employee.camera
+                        td= employee.where
+                        td= employee.comeback
+                        td= employee.left
+                        td= employee.name
+    form(method='get', action='/new')
+        button(type='submit') דווח יציאה
+
         

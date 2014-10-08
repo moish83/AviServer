@@ -3,6 +3,8 @@ var router = express.Router();
 //var EmployeeProvider = require('../employeeprovider.js').EmployeeProvider;
 //var employeeProvider= new EmployeeProvider('localhost', 27017);
 var Employee = require('../employee.js');
+var names = require('../names.json');
+var cars = require('../cars.json');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -10,7 +12,7 @@ router.get('/', function(req, res) {
       Employee.getFiltered(function(error, emps){  
         console.log(emps);
         res.render('index', {
-            title: 'נוכחות',
+            title: 'ז.כ כניסות ויציאות',
             employees:emps
         });
     });
@@ -19,7 +21,7 @@ router.get('/', function(req, res) {
 
 router.get('/new', function(req, res) {
     res.render('employee_new', {
-        title: 'הוסף יציאה'
+        title: 'הוסף יציאה', names: names.names, cars: cars.cars
     });
 });
 
