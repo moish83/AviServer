@@ -168,7 +168,7 @@ input[type =text] {
 }
 select {
     width: 200px;
-    margin-left: 16px;
+    margin-left: 16px;  
 }
 input[type =checkbox] {
   width: 200px;
