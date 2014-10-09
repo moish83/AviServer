@@ -1,5 +1,5 @@
 var db = require("mongoskin").db('mongodb://localhost:27017/office');
-
+var halfHourInMilis = 30*60*1000;
 var employees = [];
 
 /*function getAll(callback){
@@ -30,8 +30,11 @@ function Employee(name, left,comeback,where,camera,laser,car){
 
 function getFiltered(callback){
     console.log("getFiltered");
-    var currentDate = new Date().toISOString();
-    var office = db.collection('office').find({filtering_date:{$gte:currentDate}}).toArray(function(error, results) {
+    var currentDate = new Date();
+    currentDate.setTime(currentDate.getTime()-halfHourInMilis);
+    var isoDate = currentDate.toISOString();
+    console.log(isoDate);
+    var office = db.collection('office').find({filtering_date:{$gte:isoDate}}).toArray(function(error, results) {
         if( error ) callback(error)
         else callback(null, results)
             });
