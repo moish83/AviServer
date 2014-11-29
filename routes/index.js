@@ -1,4 +1,7 @@
 var express = require('express');
+var path = require('path');
+var mime = require('mime');
+var fs = require('fs');
 var router = express.Router();
 //var EmployeeProvider = require('../employeeprovider.js').EmployeeProvider;
 //var employeeProvider= new EmployeeProvider('localhost', 27017);
@@ -36,7 +39,22 @@ router.post('/del', function(req,res){
     Employee.deleteOne(req.param('name'));
     res.redirect('/');
     
-})
+});
+
+router.get('/history', function(req, res) {
+    Employee.getAll(function(temp,results){
+        var file = __dirname + '/../history.csv';
+
+        var filename = path.basename(file);
+        var mimetype = mime.lookup(file);
+
+        res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+        res.setHeader('Content-type', mimetype);
+
+        var filestream = fs.createReadStream(file);
+        filestream.pipe(res);
+    });
+});
 
 router.post('/new', function(req, res){
     //employeeProvider.save({

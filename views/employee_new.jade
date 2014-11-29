@@ -6,27 +6,27 @@ block content
         form( method="post")
             div
                 div
-                    span.label שם :
+                    span.label :שם
                     select(name="name")
                         - each name in names
                             option(value="#{name}") #{name}
                 div
-                    span.label שעת יציאה :
+                    span.label :שעת יציאה
                     input(type="time", name="left", id="editEmployeeLeftTime")
                 div
-                    span.label שעת חזרה :
+                    span.label :שעת חזרה
                     input(type="time", name="comeback", id="editEmployeeComeBack")
                 div
-                    span.label לאן :
+                    span.label :לאן
                     input(type="text", name="where", id="editEmployeeLeftWhere")
                 div
-                    span.label מצלמה :
+                    span.label :מצלמה
                     input(type="checkbox", name="camera", id="editEmployeeCamera")
                 div
-                    span.label ליזר :
+                    span.label :ליזר
                     input(type="checkbox", name="laser", id="editEmployeeLaser")
                 div
-                    span.label רכב :
+                    span.label :רכב
                     select(name="car")
                         - each car in cars
                             option(value="#{car}") #{car}

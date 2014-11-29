@@ -1,3 +1,4 @@
+var fs = require('fs');
 var db = require("mongoskin").db('mongodb://localhost:27017/office');
 var halfHourInMilis = 30*60*1000;
 var employees = [];
@@ -40,11 +41,40 @@ function getFiltered(callback){
             });
 }
 
+function getDateString(ISODateString){
+    var dateToReturn = "";
+    console.log(ISODateString);
+    var temp = ISODateString.split("T")[0];
+    console.log("222");
+    var temp2 = temp.split("-");
+    dateToReturn = temp2[2]+"-"+temp2[1]+"-"+temp2[0];
+    return dateToReturn;
+}
+
+function dumpHistory(res){
+    var writeStream = fs.createWriteStream(__dirname + '/history.csv');
+    var header = "שם"+","+"עזב"+","+"חזר"+"לאן?"+"מצלמה"+","+"לייזר"+","+"מכונית"+","+"תאריך"
+    writeStream.write(header + "\n");
+    var tempLine = "";
+    var date = "";
+    for (var i=0; i<res.length;i++){
+        console.log(res[i]);
+        date = getDateString(res[i].filtering_date);
+        tempLine+=res[i].name+","+res[i].left+","+res[i].comeback+","+res[i].where+","+res[i].camera+","+res[i].laser+","+res[i].car+","+date+"\n";
+        writeStream.write(tempLine);
+        tempLine="";
+        date="";
+    }
+}
+
 function getAll(callback){
     console.log("getAll");
     var office = db.collection('office').find({}).toArray(function(error, results) {
         if( error ) callback(error)
-        else callback(null, results)
+        else {
+            dumpHistory(results)
+            callback(null, results)
+        }
             });
 }
 
