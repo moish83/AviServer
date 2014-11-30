@@ -30,7 +30,7 @@ router.get('/new', function(req, res) {
 
 router.get('/del', function(req, res) {
     res.render('delete_employee', {
-        title: 'מחק יציאה'
+        title: 'מחק יציאה', names: names.names
     });
 });
 
