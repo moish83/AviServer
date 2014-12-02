@@ -1,5 +1,5 @@
 var fs = require('fs');
-var db = require("mongoskin").db('mongodb://localhost:27017/office');
+var db = require("mongoskin").db('mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/zc');
 var halfHourInMilis = 30*60*1000;
 var employees = [];
 
